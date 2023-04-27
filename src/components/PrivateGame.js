@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Button, List, ListItem, ListItemText, Modal, TextField, Typography, Fab, Chip, Alert } from "@mui/material";
+import { Box, Button, List, ListItem, ListItemText, Modal, TextField, Typography, Fab, Chip, Alert, CircularProgress } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
 import RefreshIcon from '@mui/icons-material/Refresh';
+import PrivateGameServices from '../services/PrivateGameServices';
 
 const style = {
     position: 'absolute',
@@ -21,10 +22,16 @@ function PrivateGame() {
     const [open, setOpen] = useState(false);
     const [words, setWords] = useState([]);
     const [roomId, setRoomId] = useState('');
-    const [showAlert, setShowAlert] = useState(false);
+    const [showCopiedAlert, setCopiedAlert] = useState(false);
+    const [showCreatedAlert, setCreatedAlert] = useState(false);
+    const [saving, setSaving] = useState(false);
+
+    useEffect(() => {
+        generateId(10);
+    }, [open]);
 
     const issueAlert = () => {
-        setShowAlert(true);
+        setCopiedAlert(true);
     };
 
     const handleModal = () => {
@@ -33,7 +40,8 @@ function PrivateGame() {
 
     const closeModal = () => {
         setOpen(false);
-        setShowAlert(false);
+        setCopiedAlert(false);
+        setCreatedAlert(false);
     }
 
     const handleAddWord = () => {
@@ -62,23 +70,57 @@ function PrivateGame() {
         setRoomId(result);
     }
 
-    useEffect(() => {
-        generateId(10);
-    }, [open]);
+    const saveGameSession = () => {
+        setSaving(true);
+        var data = {
+            "gameDetails": {
+                "id": roomId,
+                "words": words,
+            }
+        }
+        PrivateGameServices.addNewGame(data)
+            .then((res) => {
+                setCreatedAlert(true);
+                setWords([]);
+            })
+            .catch((err) => {
+                console.log(err);
+            })
+            .finally(() => {
+                setSaving(false);
+            });
+    }
 
     return (
         <div>
 
-            {showAlert && (
-                <Alert severity="success" onClose={() => setShowAlert(false)} sx={{
-                    position: "fixed",
+            {saving && <CircularProgress sx={{
+                position: "absolute",
+                right: "0",
+                zIndex: "9999",
+            }} />}
+
+            {showCopiedAlert && (
+                <Alert severity="success" onClose={() => setCopiedAlert(false)} sx={{
+                    position: "absolute",
+                    right: "0",
                     zIndex: "9999",
                 }}>
                     Copied to clipboard!
                 </Alert>
             )}
 
-            <Button onClick={handleModal}>Create a new game</Button>
+            {showCreatedAlert && (
+                <Alert severity="success" onClose={() => setCreatedAlert(false)} sx={{
+                    position: "absolute",
+                    right: "0",
+                    zIndex: "9999",
+                }}>
+                    Game created!
+                </Alert>
+            )}
+
+            <Button onClick={handleModal}>Create a private game</Button>
             <Modal
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 open={open}
@@ -121,7 +163,7 @@ function PrivateGame() {
                     </Typography>
 
                     <Typography sx={{ mt: 2, textAlign: 'center' }}>
-                        <Button variant="contained" sx={{ height: "3.5vh", width: "7.5vw" }}>Create</Button>
+                        <Button variant="contained" sx={{ height: "3.5vh", width: "7.5vw" }} onClick={() => saveGameSession()}>Create</Button>
                     </Typography>
 
                 </Box>
