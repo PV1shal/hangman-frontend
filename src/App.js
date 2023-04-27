@@ -2,6 +2,8 @@ import './App.css';
 import React, { useState } from 'react';
 import InputLetter from './InputLetter';
 import DisplayWord from './DisplayWord';
+import { Route, Routes } from 'react-router-dom';
+import PrivateGame from './components/PrivateGame';
 
 function isLetter(char) {
   return /^[A-Za-z]$/.test(char);
@@ -21,31 +23,31 @@ function App() {
   const [lives, setLives] = useState(0);
   const [msg, setMsg] = useState("");
 
-    function newGame(newAnswer) {
-      const answer = newAnswer.toUpperCase();
-      setGameAnswer(answer);
-      setUnrevealedLetters(new Set(new Array(...answer).filter(char => isLetter(char))));
-      setCharsGuessed(new Set());
-      setLives(5);
-      setMsg("");
-      setGameOngoing(true);
-    }
+  function newGame(newAnswer) {
+    const answer = newAnswer.toUpperCase();
+    setGameAnswer(answer);
+    setUnrevealedLetters(new Set(new Array(...answer).filter(char => isLetter(char))));
+    setCharsGuessed(new Set());
+    setLives(5);
+    setMsg("");
+    setGameOngoing(true);
+  }
 
   function onGuessSubmitted(guessedChar) {
-    if(unrevealedLetters.has(guessedChar)) {
+    if (unrevealedLetters.has(guessedChar)) {
       let newSet = new Set(unrevealedLetters);
       newSet.delete(guessedChar);
       setUnrevealedLetters(newSet);
- 
-      if(newSet.size <= 0) {
+
+      if (newSet.size <= 0) {
         setMsg("You won!");
-        setGameOngoing(false); 
+        setGameOngoing(false);
       }
     }
     else {
       const p = lives - 1;
       setLives(p);
-      if(p <= 0) {
+      if (p <= 0) {
         setMsg("You lost.");
         setGameOngoing(false);
       }
@@ -63,27 +65,35 @@ function App() {
 
   return (
     <div className="App">
-      <DisplayWord answer={gameAnswer} unrevealedLetters={unrevealedLetters} isSpecialChar={isSpecialChar} isGameFinished={!gameOngoing}/>
+      <DisplayWord answer={gameAnswer} unrevealedLetters={unrevealedLetters} isSpecialChar={isSpecialChar} isGameFinished={!gameOngoing} />
       <div>
         <h2>Guessed Letters:</h2>
         <div className="guessed-letters">
           {new Array(charsGuessed).map((letter) => {
-            return(<div className="guessed-letter">{letter}</div>);
+            return (<div className="guessed-letter">{letter}</div>);
           })}
         </div>
         <div>
           Lives: {lives}
         </div>
-        {gameOngoing ? 
-        (<InputLetter isValidLetter={isLetter} guessedLetters={charsGuessed} onGuessSubmitted={onGuessSubmitted}/>)
-        :
-        (<button onClick={newGameButtonClicked}>New Game</button>)}
+        {gameOngoing ?
+          (<InputLetter isValidLetter={isLetter} guessedLetters={charsGuessed} onGuessSubmitted={onGuessSubmitted} />)
+          :
+          (<button onClick={newGameButtonClicked}>New Game</button>)}
       </div>
       <div className="msg">
-                {msg && ( <div>{msg}</div>)}
-            </div>
+        {msg && (<div>{msg}</div>)}
+      </div>
+
+      <PrivateGame />
+
+      {/* <Routes>
+        <Route path="/" element={<App />} />
+        <Route path="/privategame" element={<PrivateGame />} />
+      </Routes> */}
+
     </div>
-      
+
   );
 }
 
