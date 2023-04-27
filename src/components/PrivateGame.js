@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Button, List, ListItem, ListItemText, Modal, TextField, Typography, Fab, Chip, Alert, CircularProgress } from "@mui/material";
+import { Box, Button, List, ListItem, ListItemText, Modal, TextField, Typography, Fab, Chip, Alert, CircularProgress, IconButton } from "@mui/material";
 import DeleteIcon from '@mui/icons-material/Delete';
+import CloseIcon from '@mui/icons-material/Close';
 import RefreshIcon from '@mui/icons-material/Refresh';
 import PrivateGameServices from '../services/PrivateGameServices';
 
@@ -131,6 +132,17 @@ function PrivateGame() {
                 <Box component="form" noValidate sx={style}>
                     <Typography id="modal-modal-title" variant="h4" component="h2">
                         Create a private Game
+                        <IconButton
+                            aria-label="close"
+                            sx={{
+                                position: "absolute",
+                                top: 10,
+                                right: 10,
+                            }}
+                            onClick={closeModal}
+                        >
+                            <CloseIcon />
+                        </IconButton>
                     </Typography>
                     <Typography id="modal-modal-description" sx={{ mt: 2 }}>
                         <TextField id="words" label="Enter your custom words" variant="outlined" sx={{ width: "20vw" }} />
