@@ -38,7 +38,8 @@ const JoinPrivateGame = () => {
         PrivateGameServices.getGame(roomId)
             .then((response) => {
                 const wordList = response.data.game.word;
-                navigate('/game', { state: { wordList } });
+                const typeOfGame = "private";
+                navigate('/game', { state: { wordList, typeOfGame } });
             })
             .catch((error) => {
                 setWrongCodeError(true);
@@ -54,7 +55,7 @@ const JoinPrivateGame = () => {
                 zIndex: "9999",
             }}>Something went wrong! Check the entered code</Alert>}
 
-            <Button variant="contained" sx={{ ml: 2, height: 56, width: 200, background: "#4abd46", ":hover": { background: "#368a33" }, marginTop: 2 }} onClick={handleModal}>Join a Private Game</Button>
+            <Button variant="contained" sx={{ ml: 1, height: 56, width: 200, background: "#4abd46", ":hover": { background: "#368a33" }, marginTop: 2 }} onClick={handleModal}>Join a Private Game</Button>
             <Modal
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 open={open}
