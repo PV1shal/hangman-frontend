@@ -55,7 +55,7 @@ const JoinPrivateGame = () => {
                 zIndex: "9999",
             }}>Something went wrong! Check the entered code</Alert>}
 
-            <Button variant="contained" sx={{ ml: 1, height: 56, width: 200, background: "#4abd46", ":hover": { background: "#368a33" }, marginTop: 2 }} onClick={handleModal}>Join a Private Game</Button>
+            <Button variant="contained" sx={{ height: 56, width: 200, background: "#7e4fdc", ":hover": { background: "#a375ff" }, marginTop: 2 }} onClick={handleModal}>Join a Private Game</Button>
             <Modal
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 open={open}

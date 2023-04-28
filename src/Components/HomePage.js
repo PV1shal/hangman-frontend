@@ -1,4 +1,4 @@
-import { Button, Card, CardContent, CardHeader } from '@mui/material';
+import { Button, Card, CardContent, CardHeader, Box } from '@mui/material';
 import React from 'react';
 import CreatePrivateGame from './CreatePrivateGame';
 import JoinPrivateGame from './JoinPrivateGame';
@@ -28,20 +28,26 @@ const Homepage = () => {
 
     return (
         <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-            <Card sx={{ width: "35vw", height: "38vh", background: "rgba(255, 255, 255, 0.9)", borderRadius: 5 }}>
+            <Card sx={{ width: "50vw", height: "82vh", background: "rgba(255, 255, 255, 0.9)", borderRadius: 5 }}>
                 <CardHeader
-                    titleTypographyProps={{ variant: 'h3' }}
+                    titleTypographyProps={{
+                    variant: 'h3',
+                    style:
+                    {backgroundImage: 'linear-gradient(to bottom, #decdfe, #5502fc)',
+                    webkitBackgroundClip: 'text',
+                    webkitTextFillColor: 'transparent'}
+                }}
                     title="Welcome to Hangman!"
                 />
                 <CardContent>
-                    <Button variant="contained" sx={{ height: 56, width: 200, background: "#4abd46", ":hover": { background: "#368a33" } }} onClick={() => hadndleSinglePlayer()}>Play</Button>
+                    <Button variant="contained" sx={{ height: 56, width: 200, background: "#7e4fdc", ":hover": { background: "#a375ff" } }} onClick={() => hadndleSinglePlayer()}>Play</Button>
                     <CreatePrivateGame />
                     <JoinPrivateGame />
-                    <Button variant="contained" sx={{ height: 56, width: 200, background: "#4abd46", ":hover": { background: "#368a33" }, marginTop: 2 }} href="/leaderboard">
+                    <Button variant="contained" sx={{ height: 56, width: 200, background: "#7e4fdc", ":hover": { background: "#a375ff" }, marginTop: 2 }} href="/leaderboard">
                         Leaderboard
                     </Button>
                     <br />
-                    <Button variant="contained" sx={{ height: 56, width: 200, background: "#2360d3", ":hover": { background: "#d81111" }, marginTop: 2 }} onClick={() => SignOut()}>
+                    <Button variant="contained" sx={{ height: 56, width: 200, background: "#5502fc", ":hover": { background: "#d81111" }, marginTop: 2 }} onClick={() => SignOut()}>
                         SignOut
                     </Button>
                 </CardContent>

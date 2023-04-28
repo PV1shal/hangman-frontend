@@ -40,7 +40,7 @@ const Leaderboard = () => {
             <Box sx={style}>
                 <div style={{ display: "flex" }}>
                     <IconButton>
-                        <ArrowBackIcon sx={{ color: "#4abd46" }} onClick={() => window.location.href = "/"} />
+                        <ArrowBackIcon sx={{ color: "#a375ff" }} onClick={() => window.location.href = "/"} />
                     </IconButton>
                 </div>
                 <List>

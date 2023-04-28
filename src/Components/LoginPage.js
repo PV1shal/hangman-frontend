@@ -1,3 +1,4 @@
+import { Button, Card, CardContent, CardHeader } from '@mui/material';
 import { useState, useEffect } from 'react';
 import LoginServices from '../Services/loginServices.js';
 import './LoginPage.css';
@@ -44,7 +45,7 @@ const LoginPage = () => {
             <h1>Hangman</h1>
             <form onSubmit={(e) => validateUser(e)} style={{ display: "block" }}>
                 <input type="text" placeholder='Enter Username' onChange={(e) => setUserName(e.target.value)} />
-                <button type="submit" >Login</button>
+                <Button variant="contained" type="submit">Login</Button>
             </form>
         </div>
     );

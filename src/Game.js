@@ -186,11 +186,11 @@ function Game() {
   }, [lives]);
 
   return (
-    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
-      <Card sx={{ width: "40vw", height: "95vh", background: "rgba(255, 255, 255, 0.9)", borderRadius: 5 }}>
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '140vh' }}>
+      <Card sx={{ width: "65vw", height: "133vh", background: "rgba(255, 255, 255, 0.9)", borderRadius: 5 }}>
         <div style={{ display: "flex", alignItems: "center" }}>
           <IconButton sx={{ marginLeft: 2 }}>
-            <ArrowBackIcon sx={{ color: "#4abd46" }} onClick={() => window.location.href = "/"} />
+            <ArrowBackIcon sx={{ color: "#a375ff" }} onClick={() => window.location.href = "/"} />
           </IconButton>
           {typeOfGame === "singlePlayer"
             ? <h1 style={{ textAlign: "center", flex: "1" }}>{userName}, Your current score is: {points}</h1>
@@ -216,7 +216,7 @@ function Game() {
           {gameOngoing ?
             (<InputLetter isValidLetter={isLetter} guessedLetters={charsGuessed} onGuessSubmitted={onGuessSubmitted} />)
             :
-            (<Button variant="contained" sx={{ ml: 2, height: 56, width: 200, background: "#4abd46", ":hover": { background: "#368a33" } }} onClick={newGameButtonClicked}>Start New Game</Button>)}
+            (<Button variant="contained" sx={{ ml: 2, height: 56, width: 200, background: "#7e4fdc", ":hover": { background: "#a375ff" } }} onClick={newGameButtonClicked}>Start New Game</Button>)}
         </div>
         <div className="msg">
           {msg && (<div>{msg}</div>)}
