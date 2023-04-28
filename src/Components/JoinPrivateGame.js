@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Button, List, ListItem, ListItemText, Modal, TextField, Typography, Fab, Chip, Alert, CircularProgress, IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
-import PrivateGameServices from '../Services/PrivateGameServices.js';
 import { useNavigate } from 'react-router-dom';
+import PrivateGameServices from '../Services/PrivateGameServices';
 
 const style = {
     position: 'absolute',
