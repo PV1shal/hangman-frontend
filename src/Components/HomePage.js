@@ -3,7 +3,7 @@ import React from 'react';
 import CreatePrivateGame from './CreatePrivateGame';
 import JoinPrivateGame from './JoinPrivateGame';
 import { useNavigate } from 'react-router-dom';
-import PrivateGameServices from '../Services/PrivateGameServices.js';
+import PrivateGameServices from '../Services/PrivateGameServices';
 
 const Homepage = () => {
     const navigate = useNavigate();
