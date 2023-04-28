@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import LoginServices from '../services/loginServices.js';
+import LoginServices from '../Services/loginServices.js';
 import './LoginPage.css';
 
 const LoginPage = () => {

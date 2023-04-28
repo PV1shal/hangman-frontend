@@ -6,7 +6,7 @@ import DisplayWord from './DisplayWord';
 import { Button, Card, IconButton } from '@mui/material';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import { useLocation } from 'react-router-dom';
-import loginServices from './services/loginServices';
+import loginServices from './Services/loginServices';
 
 function isLetter(char) {
   return /^[A-Za-z]$/.test(char);

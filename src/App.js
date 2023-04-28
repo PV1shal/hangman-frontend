@@ -1,10 +1,10 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
 import Game from "./Game";
-import LoginPage from "./components/LoginPage.js";
-import HomePage from "./components/HomePage.js";
+import LoginPage from "./Components/LoginPage.js";
+import HomePage from "./Components/HomePage.js";
 import { Button } from '@mui/material';
-import Leaderboard from "./components/LeaderBoard";
+import Leaderboard from "./Components/LeaderBoard";
 
 function App() {
 
