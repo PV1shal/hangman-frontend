@@ -19,7 +19,7 @@ const style = {
     pb: 3,
 };
 
-function PrivateGame() {
+function CreatePrivateGame() {
     const [open, setOpen] = useState(false);
     const [words, setWords] = useState([]);
     const [roomId, setRoomId] = useState('');
@@ -43,6 +43,7 @@ function PrivateGame() {
         setOpen(false);
         setCopiedAlert(false);
         setCreatedAlert(false);
+        setWords([]);
     }
 
     const handleAddWord = () => {
@@ -184,4 +185,4 @@ function PrivateGame() {
     );
 }
 
-export default PrivateGame;
+export default CreatePrivateGame;

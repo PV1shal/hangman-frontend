@@ -3,8 +3,10 @@ import React, { useState, useEffect } from 'react';
 import InputLetter from './InputLetter';
 import DisplayWord from './DisplayWord';
 import { Route, Routes } from 'react-router-dom';
-import PrivateGame from './components/PrivateGame';
+import CreatePrivateGame from './components/CreatePrivateGame';
 import LoginPage from './components/LoginPage.js';
+import JoinPrivateGame from './components/JoinPrivateGame';
+import Homepage from './components/HomePage';
 
 function isLetter(char) {
   return /^[A-Za-z]$/.test(char);
@@ -137,6 +139,7 @@ function App() {
 
   return (
     <div className="App">
+      <div className="slider-thumb"> </div>
       <DisplayWord answer={gameAnswer} unrevealedLetters={unrevealedLetters} isSpecialChar={isSpecialChar} isGameFinished={!gameOngoing} />
       <div>
         <button className="logout" title="logout" onClick={() => SignOut()}>Logout</button>
@@ -161,11 +164,14 @@ function App() {
         {msg && (<div>{msg}</div>)}
       </div>
 
-      <PrivateGame />
+      <CreatePrivateGame />
+      <JoinPrivateGame />
+
+      <Homepage />
 
       <Routes>
         <Route path="/" element={<LoginPage />} />
-        <Route path="/privategame" element={<PrivateGame />} />
+        <Route path="/privategame" element={<CreatePrivateGame />} />
       </Routes>
 
     </div>
