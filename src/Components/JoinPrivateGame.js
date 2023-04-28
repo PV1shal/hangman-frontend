@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Box, Button, List, ListItem, ListItemText, Modal, TextField, Typography, Fab, Chip, Alert, CircularProgress, IconButton } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import PrivateGameServices from '../services/PrivateGameServices';
+import { useNavigate } from 'react-router-dom';
 
 const style = {
     position: 'absolute',
@@ -21,6 +22,7 @@ const JoinPrivateGame = () => {
 
     const [open, setOpen] = useState(false);
     const [wrongCodeError, setWrongCodeError] = useState(false);
+    const navigate = useNavigate();
 
     const handleModal = () => {
         setOpen(true);
@@ -35,7 +37,8 @@ const JoinPrivateGame = () => {
         var roomId = document.getElementById('roomId').value.trim();
         PrivateGameServices.getGame(roomId)
             .then((response) => {
-                console.log(response.data.game);
+                const wordList = response.data.game.word;
+                navigate('/game', { state: { wordList } });
             })
             .catch((error) => {
                 setWrongCodeError(true);
@@ -51,7 +54,7 @@ const JoinPrivateGame = () => {
                 zIndex: "9999",
             }}>Something went wrong! Check the entered code</Alert>}
 
-            <Button onClick={handleModal}>Join a Private Game</Button>
+            <Button variant="contained" sx={{ ml: 2, height: 56, width: 200, background: "#4abd46", ":hover": { background: "#368a33" }, marginTop: 2 }} onClick={handleModal}>Join a Private Game</Button>
             <Modal
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
                 open={open}

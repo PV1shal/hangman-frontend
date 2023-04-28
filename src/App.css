@@ -60,19 +60,14 @@
   }
 }
 
-body {
-  height: 100vh;
-  background: linear-gradient(90deg, #e52e71, #ff8a00);
-}
-
 .slider-thumb::before {
   position: absolute;
   content: "";
-  left: 30%;
-  top: 20%;
+  left: 15%;
+    top: 15%;
   width: 1000px;
-  height: 450px;
-  background: #17141d;
+  height: 1000px;
+    background: #5002edbe;
   border-radius: 62% 47% 82% 35% / 45% 45% 80% 66%;
   will-change: border-radius, transform, opacity;
   animation: sliderShape 5s linear infinite;

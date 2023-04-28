@@ -8,7 +8,7 @@ const LoginPage = () => {
 
     useEffect(() => {
         if (localStorage.getItem('loggedInUser') !== null) {
-            window.location.href = '/hangman';
+            window.location.href = '/home';
         }
     }, []);
 
@@ -22,17 +22,18 @@ const LoginPage = () => {
         LoginServices.checkUser(userName)
             .then((response) => {
                 localStorage.setItem('loggedInUser', userName);
-                window.location.href = '/hangman';
+                window.location.href = '/home';
             }).catch((err) => {
                 var data = {
                     "userDetails": {
-                        "username": userName
+                        "username": userName,
+                        "score": 0
                     }
                 }
                 LoginServices.addUser(data)
                     .then((response) => {
                         localStorage.setItem('loggedInUser', userName);
-                        window.location.href = '/hangman';
+                        window.location.href = '/home';
                     })
                     .catch((err) => { console.log(err); });
             });
