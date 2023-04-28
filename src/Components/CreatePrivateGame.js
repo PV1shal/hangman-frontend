@@ -3,7 +3,7 @@ import { Box, Button, List, ListItem, ListItemText, Modal, TextField, Typography
 import DeleteIcon from '@mui/icons-material/Delete';
 import CloseIcon from '@mui/icons-material/Close';
 import RefreshIcon from '@mui/icons-material/Refresh';
-import PrivateGameServices from '../Services/PrivateGameServices';
+import PrivateGameServices from '../Services/PrivateGameServices.js';
 
 const style = {
     position: 'absolute',
