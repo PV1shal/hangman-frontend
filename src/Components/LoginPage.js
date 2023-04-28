@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import loginServices from '../Services/loginServices';
+import LoginServices from '../services/loginServices.js';
 import './LoginPage.css';
 
 const LoginPage = () => {
@@ -8,7 +8,7 @@ const LoginPage = () => {
 
     useEffect(() => {
         if (localStorage.getItem('loggedInUser') !== null) {
-            window.location.href = '/hangman';
+            window.location.href = '/home';
         }
     }, []);
 
@@ -19,20 +19,21 @@ const LoginPage = () => {
             return;
         }
         e.preventDefault();
-        loginServices.checkUser(userName)
+        LoginServices.checkUser(userName)
             .then((response) => {
                 localStorage.setItem('loggedInUser', userName);
-                window.location.href = '/hangman';
+                window.location.href = '/home';
             }).catch((err) => {
                 var data = {
                     "userDetails": {
-                        "username": userName
+                        "username": userName,
+                        "score": 0
                     }
                 }
-                loginServices.addUser(data)
+                LoginServices.addUser(data)
                     .then((response) => {
                         localStorage.setItem('loggedInUser', userName);
-                        window.location.href = '/hangman';
+                        window.location.href = '/home';
                     })
                     .catch((err) => { console.log(err); });
             });

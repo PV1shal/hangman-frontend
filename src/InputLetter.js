@@ -57,6 +57,12 @@ function InputLetter({isValidLetter=isLetter, guessedLetters, onGuessSubmitted})
                 Guess a letter:
                 <input type="text" value={inputLetter} maxLength={1}
                 className="input-text"
+                        onKeyDown={(e) => {
+                            if (e.key === "Backspace") {
+                                setInputLetter("");
+                                setCanGuessLetter(false);
+                            }
+                        }}
                 onChange={(e) => {
                     const newLetter = e.target.value.toUpperCase();
                     if(isLetter(newLetter)) {
